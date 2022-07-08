@@ -47,5 +47,17 @@ personRoute.post("/:name/:schoolId/:tel", async (req, res) => {
         })
     }
 })
+personRoute.put("/:schoolId/tel/:newTel", async (req, res) => {
+    console.log(req)
+    const result = await db.person.update({
+        where: {
+            schoolId:req.params.schoolId
+        },
+        data: {
+            tel:req.params.newTel
+        }
+    })
+    res.send(result)
+})
 
 export default personRoute
